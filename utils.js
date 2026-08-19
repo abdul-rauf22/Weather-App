@@ -16,36 +16,36 @@ async function getWeather(latitude, longitude) {
     try {
         const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,weather_code,wind_speed_10m,relative_humidity_2m,apparent_temperature,wind_direction_10m`;
 
-        const response = await fetch(url, {
+        const weatherResponse = await fetch(url, {
             method: "GET",
         });
 
-        if (!response.ok) {
-            throw new Error(`Request failed with status: ${response.status}`);
+        if (!weatherResponse.ok) {
+            throw new Error(`Request failed with status: ${weatherResponse.status}`);
         }
 
-        const responseData = await response.json();
-        console.log(responseData);
+        const weatherData = await weatherResponse.json();
+        console.log(weatherData);
 
         console.log(
-            `Temperature: ${responseData.current.temperature_2m} ${responseData.current_units.temperature_2m}`,
+            `Temperature: ${weatherData.current.temperature_2m} ${weatherData.current_units.temperature_2m}`,
         );
-        temperature.textContent = `Temperature: ${responseData.current.temperature_2m} ${responseData.current_units.temperature_2m}`;
+        temperature.textContent = `Temperature: ${weatherData.current.temperature_2m} ${weatherData.current_units.temperature_2m}`;
 
-        const weatherDescription = getWeatherDescription(responseData.current.weather_code,);
+        const weatherDescription = getWeatherDescription(weatherData.current.weather_code);
         console.log(weatherDescription);
         weather.textContent = `${weatherDescription}`;
 
-        console.log(`wind speed : ${responseData.current.wind_speed_10m} ${responseData.current_units.wind_speed_10m}`);
-        windSpeed.textContent = `Wind Speed : ${responseData.current.wind_speed_10m} ${responseData.current_units.wind_speed_10m}`;
+        console.log(`wind speed : ${weatherData.current.wind_speed_10m} ${weatherData.current_units.wind_speed_10m}`);
+        windSpeed.textContent = `Wind Speed : ${weatherData.current.wind_speed_10m} ${weatherData.current_units.wind_speed_10m}`;
 
-        console.log(`Humidity : ${responseData.current.relative_humidity_2m} ${responseData.current_units.relative_humidity_2m}`);
-        humidity.textContent = `Humidity : ${responseData.current.relative_humidity_2m} ${responseData.current_units.relative_humidity_2m}`;
+        console.log(`Humidity : ${weatherData.current.relative_humidity_2m} ${weatherData.current_units.relative_humidity_2m}`);
+        humidity.textContent = `Humidity : ${weatherData.current.relative_humidity_2m} ${weatherData.current_units.relative_humidity_2m}`;
 
-        console.log(`Feels Like : ${responseData.current.apparent_temperature} ${responseData.current_units.apparent_temperature}`);
-        feelsLikeTemp.textContent = `Feels like : ${responseData.current.apparent_temperature} ${responseData.current_units.apparent_temperature}`;
+        console.log(`Feels Like : ${weatherData.current.apparent_temperature} ${weatherData.current_units.apparent_temperature}`);
+        feelsLikeTemp.textContent = `Feels like : ${weatherData.current.apparent_temperature} ${weatherData.current_units.apparent_temperature}`;
 
-        const wind_direction = getWindDirection(responseData.current.wind_direction_10m);
+        const wind_direction = getWindDirection(weatherData.current.wind_direction_10m);
         console.log(`Wind direction : ${wind_direction}`);
         windDirection.textContent = wind_direction;
     } catch (err) {
