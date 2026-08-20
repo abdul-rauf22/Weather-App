@@ -1,20 +1,27 @@
 const searchInput = document.getElementById("searchWeather");
 const searchBTN = document.getElementById("searchWeatherBTN");
 
-const city = document.getElementById("city");
-const temperature = document.getElementById("temperature");
-
 const error = document.getElementById("error");
 
+const city = document.getElementById("city");
+
+const temperature = document.getElementById("temperature");
+const feelsLikeTemp = document.getElementById("feelsLikeTemp");
+const minimumTemp = document.getElementById("minimumTemp");
+const maximumTemp = document.getElementById("maximumTemp");
 const weather = document.getElementById("weather");
 const windSpeed = document.getElementById("windSpeed");
 const humidity = document.getElementById("humidity");
-const feelsLikeTemp = document.getElementById("feelsLikeTemp");
 const windDirection = document.getElementById("windDirection");
+const precipitation = document.getElementById("precipitation");
+const sunrise = document.getElementById("sunrise");
+const sunset = document.getElementById("sunset");
+
+
 
 async function getWeather(latitude, longitude) {
     try {
-        const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,weather_code,wind_speed_10m,relative_humidity_2m,apparent_temperature,wind_direction_10m`;
+        const url = `https://api.open-meteo.com/v1/forecast?latitude=${latitude}&longitude=${longitude}&current=temperature_2m,weather_code,wind_speed_10m,relative_humidity_2m,apparent_temperature,wind_direction_10m&daily=temperature_2m_min,temperature_2m_max,precipitation_sum,sunrise,sunset&timezone=auto`;
 
         const weatherResponse = await fetch(url, {
             method: "GET",
@@ -28,26 +35,45 @@ async function getWeather(latitude, longitude) {
         console.log(weatherData);
 
         console.log(
-            `Temperature: ${weatherData.current.temperature_2m} ${weatherData.current_units.temperature_2m}`,
+            `Temperature: ${weatherData.current.temperature_2m}${weatherData.current_units.temperature_2m}`,
         );
-        temperature.textContent = `Temperature: ${weatherData.current.temperature_2m} ${weatherData.current_units.temperature_2m}`;
+        temperature.textContent = `Temperature: ${weatherData.current.temperature_2m}${weatherData.current_units.temperature_2m}`;
 
         const weatherDescription = getWeatherDescription(weatherData.current.weather_code);
         console.log(weatherDescription);
         weather.textContent = `${weatherDescription}`;
 
-        console.log(`wind speed : ${weatherData.current.wind_speed_10m} ${weatherData.current_units.wind_speed_10m}`);
-        windSpeed.textContent = `Wind Speed : ${weatherData.current.wind_speed_10m} ${weatherData.current_units.wind_speed_10m}`;
+        console.log(`wind speed : ${weatherData.current.wind_speed_10m}${weatherData.current_units.wind_speed_10m}`);
+        windSpeed.textContent = `Wind Speed : ${weatherData.current.wind_speed_10m}${weatherData.current_units.wind_speed_10m}`;
 
-        console.log(`Humidity : ${weatherData.current.relative_humidity_2m} ${weatherData.current_units.relative_humidity_2m}`);
-        humidity.textContent = `Humidity : ${weatherData.current.relative_humidity_2m} ${weatherData.current_units.relative_humidity_2m}`;
+        console.log(`Humidity : ${weatherData.current.relative_humidity_2m}${weatherData.current_units.relative_humidity_2m}`);
+        humidity.textContent = `Humidity : ${weatherData.current.relative_humidity_2m}${weatherData.current_units.relative_humidity_2m}`;
 
-        console.log(`Feels Like : ${weatherData.current.apparent_temperature} ${weatherData.current_units.apparent_temperature}`);
-        feelsLikeTemp.textContent = `Feels like : ${weatherData.current.apparent_temperature} ${weatherData.current_units.apparent_temperature}`;
+        console.log(`Feels Like : ${weatherData.current.apparent_temperature}${weatherData.current_units.apparent_temperature}`);
+        feelsLikeTemp.textContent = `Feels like : ${weatherData.current.apparent_temperature}${weatherData.current_units.apparent_temperature}`;
 
         const wind_direction = getWindDirection(weatherData.current.wind_direction_10m);
         console.log(`Wind direction : ${wind_direction}`);
         windDirection.textContent = wind_direction;
+
+        console.log(`Minimum Temperature : ${weatherData.daily.temperature_2m_min[0]}${weatherData.daily_units.temperature_2m_min}`);
+        minimumTemp.textContent = `Minimum Temperature : ${weatherData.daily.temperature_2m_min[0]}${weatherData.daily_units.temperature_2m_min}`
+
+        console.log(`Maximum Temperature : ${weatherData.daily.temperature_2m_max[0]}${weatherData.daily_units.temperature_2m_max}`);
+        maximumTemp.textContent = `Maximum Temperature : ${weatherData.daily.temperature_2m_max[0]}${weatherData.daily_units.temperature_2m_max}`;
+
+        console.log(`Precipitation : ${weatherData.daily.precipitation_sum[0]}${weatherData.daily_units.precipitation_sum}`);
+        precipitation.textContent = `Precipitation : ${weatherData.daily.precipitation_sum[0]}${weatherData.daily_units.precipitation_sum}`;
+
+        console.log(`Sunrise : ${weatherData.daily.sunrise[0]}`);
+        console.log(`sunset : ${weatherData.daily.sunset[0]}`);
+        // const FORMAT_TIME = formatTime(weatherData.daily.sunrise[0]);
+        console.log(`sunrise : ${formatTime(weatherData.daily.sunrise[0])}`);
+        sunrise.textContent = `Sunrise : ${formatTime(weatherData.daily.sunrise[0])}`;
+
+        console.log(`sunset : ${formatTime(weatherData.daily.sunset[0])}`);
+        sunset.textContent = `Sunset : ${formatTime(weatherData.daily.sunset[0])}`;
+
     } catch (err) {
         console.log(`${err}`);
         error.textContent = `Unable to get weather data.`;
@@ -224,6 +250,33 @@ function getWindDirection(degree) {
 
     return `Wrong direction!`;
 }
+
+function formatTime(time) {
+    const Tparts = time.split("T");
+    const onlyTime = Tparts[1];
+    const hParts = onlyTime.split(":");
+    let hours = Number(hParts[0]);
+    const minuts = hParts[1];
+
+    let period;
+
+    if (hours >= 12) {
+        period = "PM";
+    } else {
+        period = "AM";
+    }
+
+    if (hours > 12) {
+        hours = hours - 12;
+    }
+
+    if (hours === 0) {
+        hours = 12;
+    }
+
+    return `${hours}:${minuts} ${period}`;
+}
+
 searchBTN.addEventListener("click", searchWeather);
 searchInput.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
