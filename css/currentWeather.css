@@ -1,0 +1,135 @@
+/* =========================
+   CURRENT WEATHER
+========================= */
+
+.currentWeather {
+    display: flex;
+    overflow: hidden;
+
+    background-color: white;
+
+    border: 1px solid #e5e7eb;
+    border-radius: 16px;
+}
+
+.weatherCards_1 {
+    margin: 0;
+    gap: 10px;
+}
+
+.tempInfo {
+    flex: 1;
+    padding: 80px 32px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.weatherIcon {
+    width: 140px;
+    height: 140px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin-bottom: 24px;
+}
+
+.cloudIcon {
+    font-size: 100px;
+}
+
+.temp_wrap {
+    align-items: center;
+}
+
+.temp_wrap h2 {
+    font-size: 64px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.temp_wrap>h6 {
+    font-size: 18px;
+    margin: 4px 0;
+}
+
+.minMaxTemp {
+    display: flex;
+    gap: 16px;
+    justify-content: center;
+}
+
+.minMaxTemp h6 {
+    margin: 0;
+    color: rgb(113, 112, 112);
+}
+
+.cityInfo {
+    flex: 1;
+    padding: 32px;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.cityInfo h3 {
+    font-size: 30px;
+    font-weight: 700;
+    margin: 0;
+}
+
+.date {
+    margin-top: 4px;
+    font-size: 14px;
+    color: #6c757d;
+}
+
+.weatherCards {
+    margin-top: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.weatherCards_1 .col {
+    display: flex;
+    align-items: center;
+
+    padding: 16px 20px;
+    min-height: 72px;
+
+    border: 1px solid #e5e7eb !important;
+    border-radius: 12px;
+}
+
+.weatherCards_1 .col i {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 18px;
+
+    border-radius: 10px;
+    background-color: #f1f5f9;
+    margin-right: 12px;
+}
+
+.detailInfo {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.detailInfo span {
+    font-size: 13px;
+    color: #6c757d;
+}
+
+.detailInfo strong {
+    font-size: 16px;
+}

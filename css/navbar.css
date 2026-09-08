@@ -1,0 +1,40 @@
+.search-bar {
+    display: flex;
+    background-color: white;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.iconSearch {
+    font-size: 18px;
+    padding-right: 24px;
+    padding-left: 15px;
+}
+
+.searchInput {
+    border: none;
+    box-shadow: none;
+}
+
+.searchInput:focus {
+    box-shadow: none !important;
+
+}
+
+.rounded-4 {
+    border-radius: 16px;
+}
+
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+
+    width: 100%;
+    z-index: 1000;
+}
+
+body {
+    padding-top: 80px;
+}

@@ -1,36 +1,379 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Whether App</title>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="./css/main.css">
+    <link rel="shortcut icon" href="./assets/images/weatherAppLogo.png" type="image/x-icon">
 </head>
-<style>
-    @import url(./utils.css);
-</style>
 
-<body style="padding-top: 50px;">
+<body>
+    <div class="container-fluid pb-3">
+        <!-- search bar top bar -->
+        <header class="mb-2">
+            <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+                <div class="container-fluid">
 
-    <input type="search" name="" id="searchWeather" class="">
-    <button type="button" id="searchWeatherBTN">GET WEATHER</button>
+                    <!-- Logo Picture -->
+                    <a class="navbar-brand d-flex align-items-center" href="#">
+                        <img src="./assets/images/weatherAppLogo.png" alt="Logo" width="40" height="40"
+                            class="d-inline-block align-text-top me-2 rounded-circle">
+                        <span>Weather APP</span>
+                    </a>
 
-    <h1 id="city">Weather</h1>
-    <p id="temperature"></p>
-    <p id="feelsLikeTemp"></p>
-    <p id="minimumTemp"></p>
-    <p id="maximumTemp"></p>
-    <p id="error"></p>
-    <p id="weather"></p>
-    <p id="windSpeed"></p>
-    <p id="humidity"></p>
-    <p id="windDirection"></p>
-    <p id="precipitation"></p>
-    <p id="sunrise"></p>
-    <p id="sunset"></p>
+                    <!-- Toggle Button for Mobile View -->
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+
+                    <!-- Navbar Links and Search Bar -->
+                    <div class="collapse navbar-collapse" id="navbarContent">
+
+
+                        <!-- Search Bar -->
+                        <form id="searchForm" class="d-flex ms-auto">
+                            <span class="search-bar border me-2 rounded-4">
+                                <i class="iconSearch fa-solid fa-magnifying-glass"></i>
+                                <input id="searchCity" class="searchInput border-0  form-control me-2" type="search"
+                                    placeholder="Search City..." aria-label="Search">
+                            </span>
+                            <button class="btn btn-outline-primary rounded-4" id="btnSearch"
+                                type="submit">Search</button>
+                        </form>
+
+                    </div>
+                </div>
+            </nav>
+        </header>
+        <!-- current weather -->
+        <div class="currentWeather d-flex">
+            <div class="tempInfo container-fluid border d-flex flex-column">
+                <span class=" weatherIcon rounded-circle ">
+                    <i class="cloudIcon fa-solid fa-cloud-sun"></i>
+                </span>
+                <div class="temp_wrap d-flex flex-column">
+                    <h2 id="temperature">28&deg;C</h2>
+                    <h6 id="weather">Partly Cloudy</h6>
+                    <div class="minMaxTemp">
+                        <h6 id="maximumTemp">H:28&deg;C</h6>
+                        <h6 id="minimumTemp">L:19&deg;C</h6>
+                    </div>
+                </div>
+            </div>
+            <!-- weather details -->
+            <div class="cityInfo container-fluid border">
+                <span class=" badge bg-light text-danger border border-danger" data-bs-toggle="tooltip"
+                    data-bs-placement="top" title="This feature is still under development.">
+                    Experimental!
+                </span>
+                <h3>cityInfo, country</h3>
+                <div class="date">
+                    <span class="dateOnly">fri ,00 may,2026 |</span>
+                    <span class="timeOnly">00:00:00</span>
+                </div>
+                <div class="weatherCards">
+                    <div class="weatherCards_1 row p-3">
+                        <div class="col border">
+                            <i class="fas fa-temperature-half"></i>
+                            <div class="detailInfo">
+                                <span>feels like</span>
+                                <strong>28&deg;C</strong>
+                            </div>
+                        </div>
+                        <div class="col border">
+                            <i class="fas fa-droplet"></i>
+                            <div class="detailInfo">
+                                <span>humidity</span>
+                                <strong>28&deg;C</strong>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="weatherCards_1 row p-3">
+                        <div class="col border">
+                            <i class="fas fa-wind"></i>
+                            <div class="detailInfo">
+                                <span>wind speed</span>
+                                <strong>28&deg;C</strong>
+                            </div>
+
+                        </div>
+                        <div class="col border">
+                            <i class="fas fa-compass"></i>
+                            <div class="detailInfo">
+                                <span> wind direction</span>
+                                <strong>28&deg;C</strong>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="weatherCards_1 row p-3">
+                        <div class="col border">
+                            <i class="fas fa-gauge-high"></i>
+                            <div class="detailInfo">
+                                <span>presure</span>
+                                <strong>28&deg;C</strong>
+                            </div>
+
+                        </div>
+                        <div class="col border">
+                            <i class="fas fa-eye"></i>
+                            <div class="detailInfo">
+                                <span>visibilty</span>
+                                <strong>28&deg;C</strong>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="weatherCards_1 row p-3">
+                        <div class="col border">
+                            <i class="fas fa-cloud-rain"></i>
+                            <div class="detailInfo">
+                                <span>precipitition</span>
+                                <strong>28&deg;C</strong>
+                            </div>
+
+                        </div>
+                        <div class="col border">
+                            <i class="fas fa-sun"></i>
+                            <div class="detailInfo">
+                                <span>UV index</span>
+                                <strong>28&deg;C</strong>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="weatherCards_1 row p-3">
+                        <div class="col border">
+                            <i class="fas fa-sun"></i>
+                            <div class="detailInfo">
+                                <span>SUNISE SUNSET</span>
+                                <strong>28&deg;C</strong>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- hourly forecast -->
+        <div class="hourlyForcast container-fluid border mt-2">
+            <span class=" badge bg-light text-danger border border-danger" data-bs-toggle="tooltip"
+                data-bs-placement="top" title="This feature is still under development.">
+                Experimental!
+            </span>
+
+            <div class="hourlyHeading">
+                <h5>🕐 Hourly Forecast</h5>
+                <span>→ View More</span>
+            </div>
+
+            <div id="hourly-scroll-container">
+
+                <!-- 1 -->
+                <div class="hourlyItem">
+                    <p class="hourTime">12:00 PM</p>
+                    <i class="fa-solid fa-cloud-sun hourlyIcon"></i>
+                    <strong class="hourTemp">28°C</strong>
+                    <span class="rainChance">10%</span>
+                </div>
+
+                <!-- 2 -->
+                <div class="hourlyItem">
+                    <p class="hourTime">01:00 PM</p>
+                    <i class="fa-solid fa-sun hourlyIcon"></i>
+                    <strong class="hourTemp">30°C</strong>
+                    <span class="rainChance">5%</span>
+                </div>
+
+                <!-- 3 -->
+                <div class="hourlyItem">
+                    <p class="hourTime">02:00 PM</p>
+                    <i class="fa-solid fa-cloud-sun hourlyIcon"></i>
+                    <strong class="hourTemp">31°C</strong>
+                    <span class="rainChance">10%</span>
+                </div>
+
+                <!-- 4 -->
+                <div class="hourlyItem">
+                    <p class="hourTime">03:00 PM</p>
+                    <i class="fa-solid fa-cloud-sun hourlyIcon"></i>
+                    <strong class="hourTemp">29°C</strong>
+                    <span class="rainChance">15%</span>
+                </div>
+
+                <!-- 5 -->
+                <div class="hourlyItem">
+                    <p class="hourTime">04:00 PM</p>
+                    <i class="fa-solid fa-cloud-sun hourlyIcon"></i>
+                    <strong class="hourTemp">27°C</strong>
+                    <span class="rainChance">20%</span>
+                </div>
+
+                <!-- 6 -->
+                <div class="hourlyItem">
+                    <p class="hourTime">05:00 PM</p>
+                    <i class="fa-solid fa-cloud hourlyIcon"></i>
+                    <strong class="hourTemp">25°C</strong>
+                    <span class="rainChance">25%</span>
+                </div>
+
+                <!-- 7 -->
+                <div class="hourlyItem">
+                    <p class="hourTime">06:00 PM</p>
+                    <i class="fa-solid fa-cloud-sun hourlyIcon"></i>
+                    <strong class="hourTemp">23°C</strong>
+                    <span class="rainChance">30%</span>
+                </div>
+
+            </div>
+        </div>
+        <!-- Daily Forecast and Air Quality -->
+        <div class="dailyForecastAndAirQuality">
+
+            <!-- 7 Day Forecast -->
+            <div class="day_7Forcast">
+                <span class=" badge bg-light text-danger border border-danger" data-bs-toggle="tooltip"
+                    data-bs-placement="top" title="This feature is still under development.">
+                    Experimental!
+                </span>
+
+                <div class="dailyHeading">
+                    <h5>7 Day Forecast</h5>
+                    <span>→ View More</span>
+                </div>
+
+                <div class="dailyItems">
+
+                    <div class="dailyItem">
+                        <span class="dayName">Today</span>
+                        <i class="fa-solid fa-cloud-sun dailyIcon"></i>
+
+                        <div class="dailyTemp">
+                            <strong>28°</strong>
+                            <span>19°</span>
+                        </div>
+                    </div>
+
+                    <div class="dailyItem">
+                        <span class="dayName">Saturday</span>
+                        <i class="fa-solid fa-sun dailyIcon"></i>
+
+                        <div class="dailyTemp">
+                            <strong>30°</strong>
+                            <span>20°</span>
+                        </div>
+                    </div>
+
+                    <div class="dailyItem">
+                        <span class="dayName">Sunday</span>
+                        <i class="fa-solid fa-cloud dailyIcon"></i>
+
+                        <div class="dailyTemp">
+                            <strong>27°</strong>
+                            <span>18°</span>
+                        </div>
+                    </div>
+
+                    <div class="dailyItem">
+                        <span class="dayName">Monday</span>
+                        <i class="fa-solid fa-cloud-rain dailyIcon"></i>
+
+                        <div class="dailyTemp">
+                            <strong>24°</strong>
+                            <span>17°</span>
+                        </div>
+                    </div>
+
+                    <div class="dailyItem">
+                        <span class="dayName">Tuesday</span>
+                        <i class="fa-solid fa-cloud-sun dailyIcon"></i>
+
+                        <div class="dailyTemp">
+                            <strong>26°</strong>
+                            <span>18°</span>
+                        </div>
+                    </div>
+
+                    <div class="dailyItem">
+                        <span class="dayName">Wednesday</span>
+                        <i class="fa-solid fa-sun dailyIcon"></i>
+
+                        <div class="dailyTemp">
+                            <strong>29°</strong>
+                            <span>20°</span>
+                        </div>
+                    </div>
+
+                    <div class="dailyItem">
+                        <span class="dayName">Thursday</span>
+                        <i class="fa-solid fa-cloud dailyIcon"></i>
+
+                        <div class="dailyTemp">
+                            <strong>27°</strong>
+                            <span>19°</span>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Air Quality -->
+            <div class="airQuality">
+                <span class=" badge bg-light text-danger border border-danger" data-bs-toggle="tooltip"
+                    data-bs-placement="top" title="This feature is still under development.">
+                    Experimental!
+                </span>
+
+                <h4>Air Quality</h4>
+
+                <div class="aqiMain">
+                    <span>US AQI</span>
+                    <strong>42</strong>
+                    <p>Good</p>
+                </div>
+
+                <div class="gasStatus">
+
+                    <div class="gasItem">
+                        <span>PM 2.5</span>
+                        <strong>12</strong>
+                    </div>
+
+                    <div class="gasItem">
+                        <span>PM 10</span>
+                        <strong>20</strong>
+                    </div>
+
+                    <div class="gasItem">
+                        <span>CO</span>
+                        <strong>0.3</strong>
+                    </div>
+
+                    <div class="gasItem">
+                        <span>NO₂</span>
+                        <strong>12</strong>
+                    </div>
+
+                    <div class="gasItem">
+                        <span>O₃</span>
+                        <strong>48</strong>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+    <script type="module" src="./js/main.js"></script>
+    <!-- <script src="./js/api.js"></script> -->
+    <!-- <script src="./bootstrap/btsrp_JS/bootstrap.bundle.min.js"></script> -->
+    <!-- <script src="https://kit.fontawesome.com/11fc789188.js" crossorigin="anonymous"></script> -->
 </body>
-
-<script src="./utils.js"></script>
 
 </html>

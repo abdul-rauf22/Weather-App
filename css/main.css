@@ -1,0 +1,12 @@
+
+@import url(./navbar.css);
+@import url(./currentWeather.css);
+@import url(./forecast.css);
+@import url(./bootstrap/btsrp_CSS/bootstrap.min.css);
+@import url(../assets/icons/css/all.min.css);
+
+
+body{
+    padding-top: 150px !important;
+}
+
