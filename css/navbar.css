@@ -38,3 +38,9 @@ header {
 body {
     padding-top: 80px;
 }
+
+/* Search form ki maximum width set karne ke liye takay desktop par boht bara na dikhe */
+.max-width-search {
+    max-width: 400px;
+}
+

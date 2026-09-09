@@ -2,11 +2,15 @@
 @import url(./navbar.css);
 @import url(./currentWeather.css);
 @import url(./forecast.css);
+
+@import url(./mediaQuery.css);
+
 @import url(./bootstrap/btsrp_CSS/bootstrap.min.css);
+
 @import url(../assets/icons/css/all.min.css);
 
 
-body{
+/* body{
     padding-top: 150px !important;
-}
+} */
 
