@@ -2,9 +2,9 @@
 
 import { elements } from "./elements.js";
 import { getWeather } from "./api.js";
-import { getWeatherDescription } from "./utils.js";
+import { getWeatherDescription, formattedDateAndTime, getWindDirection, getSunriseSetset } from "./utils.js";
 
-export function displayElements(weatherData) {
+export function displayElements(weatherData, nameOfCity) {
     elements.temperature.textContent =
         `${Math.round(weatherData.current.temperature_2m)}${weatherData.current_units.temperature_2m}`;
 
@@ -15,12 +15,86 @@ export function displayElements(weatherData) {
         `${Math.round(weatherData.daily.temperature_2m_min[0])}${weatherData.daily_units.temperature_2m_min}`;
     elements.maximumTemp.textContent =
         `${Math.round(weatherData.daily.temperature_2m_max[0])}${weatherData.daily_units.temperature_2m_max}`;
+
+    elements.cityInfo.textContent = `${nameOfCity.name}, ${nameOfCity.country}`;
+
+    const currentTime = weatherData.current.time;
+    const timeAndDate = formattedDateAndTime(currentTime);
+    elements.timeAndDate.textContent = `${timeAndDate}`;
+
+    elements.feelsLikeTemp.textContent =
+        `${Math.round(weatherData.current.apparent_temperature)}${weatherData.current_units.apparent_temperature}`;
+
+    elements.humidity.textContent =
+        `${Math.round(weatherData.current.relative_humidity_2m)}${weatherData.current_units.relative_humidity_2m}`;
+
+    const windSpeed = weatherData.current.wind_speed_10m;
+    elements.windSpeed.textContent =
+        `${windSpeed.toFixed(1)}${weatherData.current_units.wind_speed_10m}`;
+
+    const wind_direction = weatherData.current.wind_direction_10m;
+    const windDirection = getWindDirection(wind_direction);
+    elements.windDirection.textContent = windDirection;
+
+    elements.pressure.textContent = `${Math.round(weatherData.current.pressure_msl)} ${weatherData.current_units.pressure_msl}`;
+
+    elements.visibility.textContent = `${weatherData.current.visibility} ${weatherData.current_units.visibility}`;
+
+    const precipitation = weatherData.daily.precipitation_sum[0];
+    elements.precipitation.textContent =
+        `${precipitation.toFixed(1)} ${weatherData.daily_units.precipitation_sum}`;
+
+    const uvIndex = weatherData.current.uv_index;
+    elements.uvIndex.textContent = `${uvIndex}`;
+
+    const sunrise = weatherData.daily.sunrise[0];
+    elements.sunrise.textContent = getSunriseSetset(sunrise);
+
+    const sunset = weatherData.daily.sunset[0];
+    elements.sunset.textContent = getSunriseSetset(sunset);
 }
 
-export function displayElementsInConsoleTab(weatherData) {
+export function displayElementsInConsoleTab(weatherData, nameOfCity) {
     console.log(
         `Temperature: ${weatherData.current.temperature_2m}${weatherData.current_units.temperature_2m}`
     );
+
+    console.log(`Minimum Temperature : ${weatherData.daily.temperature_2m_min[0]}${weatherData.daily_units.temperature_2m_min}`);
+
+    console.log(`Maximum Temperature : ${weatherData.daily.temperature_2m_max[0]}${weatherData.daily_units.temperature_2m_max}`);
+
+    console.log(`${nameOfCity.name}, ${nameOfCity.country}`);
+
+    const currentTime = weatherData.current.time;
+    const timeAndDate = formattedDateAndTime(currentTime);
+
+    console.log(timeAndDate);
+
+    console.log(`Feels Like : ${weatherData.current.apparent_temperature}${weatherData.current_units.apparent_temperature}`);
+
+    console.log(`Humidity : ${weatherData.current.relative_humidity_2m}${weatherData.current_units.relative_humidity_2m}`);
+
+    console.log(`wind speed : ${weatherData.current.wind_speed_10m}${weatherData.current_units.wind_speed_10m}`);
+
+    const wind_direction = getWindDirection(weatherData.current.wind_direction_10m);
+    console.log(`Wind direction : ${wind_direction}`);
+    // windDirection.textContent = wind_direction;
+
+    console.log(`Pressure: ${weatherData.current.pressure_msl}${weatherData.current_units.pressure_msl}`);
+
+    console.log(`Visibility: ${weatherData.current.visibility}${weatherData.current_units.visibility}`);
+
+    console.log(`Precipitation : ${weatherData.daily.precipitation_sum[0]}${weatherData.daily_units.precipitation_sum}`);
+
+    console.log(`UV Index: ${weatherData.current.uv_index}`);
+
+    const sunrise = weatherData.daily.sunrise[0];
+    console.log(`Sunrise : ${getSunriseSetset(sunrise)}`);
+
+    const sunset = weatherData.daily.sunset[0];
+    console.log(`sunset : ${getSunriseSetset(sunset)}`);
+
+
     // temperature.textContent = `Temperature: ${weatherData.current.temperature_2m}${weatherData.current_units.temperature_2m}`;
 
     // console.log(getWeatherDescription(weatherData.current.weather_code));
@@ -30,44 +104,26 @@ export function displayElementsInConsoleTab(weatherData) {
     // weatherIcon.textContent = getWeatherIcon(weatherData.current.weather_code);
 
 
-    console.log(`wind speed : ${weatherData.current.wind_speed_10m}${weatherData.current_units.wind_speed_10m}`);
     // windSpeed.textContent = `Wind Speed : ${weatherData.current.wind_speed_10m}${weatherData.current_units.wind_speed_10m}`;
 
-    console.log(`Humidity : ${weatherData.current.relative_humidity_2m}${weatherData.current_units.relative_humidity_2m}`);
     // humidity.textContent = `Humidity : ${weatherData.current.relative_humidity_2m}${weatherData.current_units.relative_humidity_2m}`;
 
-    console.log(`Feels Like : ${weatherData.current.apparent_temperature}${weatherData.current_units.apparent_temperature}`);
     // feelsLikeTemp.textContent = `Feels like : ${weatherData.current.apparent_temperature}${weatherData.current_units.apparent_temperature}`;
 
-    // const wind_direction = getWindDirection(weatherData.current.wind_direction_10m);
-    // console.log(`Wind direction : ${wind_direction}`);
-    // windDirection.textContent = wind_direction;
 
-    console.log(`Minimum Temperature : ${weatherData.daily.temperature_2m_min[0]}${weatherData.daily_units.temperature_2m_min}`);
     // minimumTemp.textContent = `Minimum Temperature : ${weatherData.daily.temperature_2m_min[0]}${weatherData.daily_units.temperature_2m_min}`
 
-    console.log(`Maximum Temperature : ${weatherData.daily.temperature_2m_max[0]}${weatherData.daily_units.temperature_2m_max}`);
     // maximumTemp.textContent = `Maximum Temperature : ${weatherData.daily.temperature_2m_max[0]}${weatherData.daily_units.temperature_2m_max}`;
 
-    console.log(`Precipitation : ${weatherData.daily.precipitation_sum[0]}${weatherData.daily_units.precipitation_sum}`);
-    // precipitation.textContent = `Precipitation : ${weatherData.daily.precipitation_sum[0]}${weatherData.daily_units.precipitation_sum}`;
 
-    console.log(`Sunrise : ${weatherData.daily.sunrise[0]}`);
-    console.log(`sunset : ${weatherData.daily.sunset[0]}`);
-    // const FORMAT_TIME = formatTime(weatherData.daily.sunrise[0]);
-    // console.log(`sunrise : ${formatTime(weatherData.daily.sunrise[0])}`);
-    // sunrise.textContent = `Sunrise : ${formatTime(weatherData.daily.sunrise[0])}`;
+    // // const FORMAT_TIME = formatTime(weatherData.daily.sunrise[0]);
+    // // console.log(`sunrise : ${formatTime(weatherData.daily.sunrise[0])}`);
+    // // sunrise.textContent = `Sunrise : ${formatTime(weatherData.daily.sunrise[0])}`;
 
-    // console.log(`sunset : ${formatTime(weatherData.daily.sunset[0])}`);
-    // sunset.textContent = `Sunset : ${formatTime(weatherData.daily.sunset[0])}`;
+    // // console.log(`sunset : ${formatTime(weatherData.daily.sunset[0])}`);
+    // // sunset.textContent = `Sunset : ${formatTime(weatherData.daily.sunset[0])}`;
 
-    console.log(`Visibility: ${weatherData.current.visibility}${weatherData.current_units.visibility}`);
-    // visibility.textContent = `Visibility: ${weatherData.current.visibility}${weatherData.current_units.visibility}`;
 
-    console.log(`UV Index: ${weatherData.current.uv_index}`);
-    // uvIndex.textContent = `UV Index: ${weatherData.current.uv_index}`;
 
-    console.log(`Pressure: ${weatherData.current.pressure_msl}${weatherData.current_units.pressure_msl}`);
-    // pressure.textContent = `Pressure: ${weatherData.current.pressure_msl}${weatherData.current_units.pressure_msl}`;
 
 }

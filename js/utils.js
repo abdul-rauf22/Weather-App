@@ -90,3 +90,69 @@ export function getWeatherDescription(code) {
             return "Unknown weather";
     }
 }
+
+
+export function formattedDateAndTime(currentTime) {
+    const date = new Date(currentTime);
+
+    const day = date.toLocaleDateString("en-US", {
+        weekday: "short"
+    });
+
+    const dayNumber = date.toLocaleDateString("en-US", {
+        day: "numeric"
+    });
+
+    const month = date.toLocaleDateString("en-US", {
+        month: "short"
+    });
+
+    const year = date.toLocaleDateString("en-US", {
+        year: "numeric"
+    });
+
+    const time = date.toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true
+    });
+
+    const formattedDate =
+        `${day}, ${dayNumber} ${month}, ${year} | ${time}`;
+
+    return formattedDate;
+}
+
+export function getWindDirection(degree) {
+
+    if (degree >= 0 && degree < 22.5) return `N (north)`;
+
+    if (degree >= 22.5 && degree < 67.5) return `NE (northeast)`;
+
+    if (degree >= 67.5 && degree < 112.5) return `E (east)`;
+
+    if (degree >= 112.5 && degree < 157.5) return `SE (southeast)`;
+
+    if (degree >= 157.5 && degree < 202.5) return `S (south)`;
+
+    if (degree >= 202.5 && degree < 247.5) return `SW (southwest)`;
+
+    if (degree >= 247.5 && degree < 292.5) return `W (west)`;
+
+    if (degree >= 292.5 && degree < 337.5) return `NW (northwest)`;
+
+    if (degree >= 337.5 && degree <= 360) return `N (north)`;
+
+    return `Wrong direction!`;
+}
+
+export function getSunriseSetset(time) {
+    const sunTime = new Date(time).toLocaleTimeString("en-US", {
+        hour: "2-digit",
+        minute: "2-digit",
+        hour12: true
+    });
+
+    return sunTime;
+
+}

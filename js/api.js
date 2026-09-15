@@ -4,7 +4,7 @@
 // import { searchCity } from "./searchCity.js";
 
 
-export async function getWeather(latitude, longitude) {
+export async function getWeather(latitude, longitude, nameOfCity) {
     try {
         const queryParams = new URLSearchParams({
             latitude,
@@ -28,7 +28,10 @@ export async function getWeather(latitude, longitude) {
 
 
 
-        return weatherData;
+        return {
+            weatherData,
+            nameOfCity
+        };
 
     } catch (err) {
         console.log(`${err}`);
@@ -60,17 +63,18 @@ export async function getLocation(cityName) {
             // error.textContent = `City Not Found!`;
             return;
         }
-        console.log(`latitude: ${locationData.results[0].latitude}`);
-        console.log(`longitude: ${locationData.results[0].longitude}`);
-        console.log(`Name: ${locationData.results[0].name}`);
+        const latitude = locationData.results[0].latitude;
+        const longitude = locationData.results[0].longitude;
+        const nameOfCity = locationData.results[0];
+
+        console.log(latitude);
+        console.log(longitude);
+        console.log(nameOfCity);
 
         // city.textContent = `${locationData.results[0].name}, ${locationData.results[0].country}`;
         // error.textContent = "";
 
-        return getWeather(
-            locationData.results[0].latitude,
-            locationData.results[0].longitude,
-        );
+        return getWeather(latitude, longitude, nameOfCity);
     } catch (err) {
         console.log(err);
         // error.textContent = "Unable to find city.";

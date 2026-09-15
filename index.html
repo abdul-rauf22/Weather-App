@@ -54,14 +54,9 @@
             </div>
             <!-- weather details -->
             <div class="cityInfo container-fluid border">
-                <span class=" badge bg-light text-danger border border-danger" data-bs-toggle="tooltip"
-                    data-bs-placement="top" title="This feature is still under development.">
-                    Experimental!
-                </span>
-                <h3>cityInfo, country</h3>
+                <h3 id="cityInfo">cityInfo, country</h3>
                 <div class="date">
-                    <span class="dateOnly">fri ,00 may,2026 |</span>
-                    <span class="timeOnly">00:00:00</span>
+                    <span id="timeAndDate" class="timeAndDate">fri, 00 may, 0000 | 00:00:00</span>
                 </div>
                 <div class="weatherCards">
                     <div class="weatherCards_1 row p-3">
@@ -69,14 +64,14 @@
                             <i class="fas fa-temperature-half"></i>
                             <div class="detailInfo">
                                 <span>feels like</span>
-                                <strong>28&deg;C</strong>
+                                <strong id="feelsLikeTemp">0&deg;C</strong>
                             </div>
                         </div>
                         <div class="col border">
                             <i class="fas fa-droplet"></i>
                             <div class="detailInfo">
                                 <span>humidity</span>
-                                <strong>28&deg;C</strong>
+                                <strong id="humidity">0%</strong>
                             </div>
 
                         </div>
@@ -86,7 +81,7 @@
                             <i class="fas fa-wind"></i>
                             <div class="detailInfo">
                                 <span>wind speed</span>
-                                <strong>28&deg;C</strong>
+                                <strong id="windSpeed">0km/h</strong>
                             </div>
 
                         </div>
@@ -94,7 +89,7 @@
                             <i class="fas fa-compass"></i>
                             <div class="detailInfo">
                                 <span> wind direction</span>
-                                <strong>28&deg;C</strong>
+                                <strong id="windDirection">NA</strong>
                             </div>
 
                         </div>
@@ -104,7 +99,7 @@
                             <i class="fas fa-gauge-high"></i>
                             <div class="detailInfo">
                                 <span>presure</span>
-                                <strong>28&deg;C</strong>
+                                <strong id="pressure">0 hPa</strong>
                             </div>
 
                         </div>
@@ -112,7 +107,7 @@
                             <i class="fas fa-eye"></i>
                             <div class="detailInfo">
                                 <span>visibilty</span>
-                                <strong>28&deg;C</strong>
+                                <strong id="visibility">0 m</strong>
                             </div>
 
                         </div>
@@ -122,7 +117,7 @@
                             <i class="fas fa-cloud-rain"></i>
                             <div class="detailInfo">
                                 <span>precipitition</span>
-                                <strong>28&deg;C</strong>
+                                <strong id="precipitation">0 mm</strong>
                             </div>
 
                         </div>
@@ -130,7 +125,7 @@
                             <i class="fas fa-sun"></i>
                             <div class="detailInfo">
                                 <span>UV index</span>
-                                <strong>28&deg;C</strong>
+                                <strong id="uvIndex">0</strong>
                             </div>
 
                         </div>
@@ -139,8 +134,12 @@
                         <div class="col border">
                             <i class="fas fa-sun"></i>
                             <div class="detailInfo">
-                                <span>SUNISE SUNSET</span>
-                                <strong>28&deg;C</strong>
+                                <span>SUNISE/SUNSET</span>
+                                <strong>
+                                    <span id="sunrise">00:00:00</span>
+                                    <span class="forwardSlash">/</span>
+                                    <span id="sunset">00:00:00</span>
+                                </strong>
                             </div>
 
                         </div>

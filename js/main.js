@@ -14,28 +14,7 @@ import { displayElements, displayElementsInConsoleTab } from "./display.js";
 
 
 
-function getWindDirection(degree) {
 
-    if (degree >= 0 && degree < 22.5) return `Wind Direction : N (north)`;
-
-    if (degree >= 22.5 && degree < 67.5) return `Wind Direction : NE (northeast)`;
-
-    if (degree >= 67.5 && degree < 112.5) return `Wind Direction : E (east)`;
-
-    if (degree >= 112.5 && degree < 157.5) return `Wind Direction : SE (southeast)`;
-
-    if (degree >= 157.5 && degree < 202.5) return `Wind Direction : S (south)`;
-
-    if (degree >= 202.5 && degree < 247.5) return `Wind Direction : SW (southwest)`;
-
-    if (degree >= 247.5 && degree < 292.5) return `Wind Direction : W (west)`;
-
-    if (degree >= 292.5 && degree < 337.5) return `Wind Direction : NW (northwest)`;
-
-    if (degree >= 337.5 && degree <= 360) return `Wind Direction : N (north)`;
-
-    return `Wrong direction!`;
-}
 
 function formatTime(time) {
     const Tparts = time.split("T");
@@ -115,7 +94,7 @@ elements.searchForm.addEventListener("submit", async function (event) {
     // const cityName = elements.searchCity.value;
     // searchCity();
 
-    const weatherData = await searchCity();
-    displayElementsInConsoleTab(weatherData);
-    displayElements(weatherData);
+    const data = await searchCity();
+    displayElementsInConsoleTab(data.weatherData, data.nameOfCity);
+    displayElements(data.weatherData, data.nameOfCity);
 });
