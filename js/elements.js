@@ -42,6 +42,8 @@ export const elements = {
     uvIndex: document.getElementById("uvIndex"),
 
     pressure: document.getElementById("pressure"),
+
+    hourlyForecast: document.getElementById("hourly-scroll-container"),
 };
 
 // console.log(elements.searchForm);

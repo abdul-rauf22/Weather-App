@@ -14,7 +14,7 @@ export function searchCity() {
     } else {
         elements.searchCity.classList.remove("inputError");
 
-        console.log(`you searched : ${cityName}`);
+        // console.log(`you searched : ${cityName}`);
 
         const weatherData = getLocation(cityName);
 

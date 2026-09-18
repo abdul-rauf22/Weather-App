@@ -11,6 +11,7 @@ export async function getWeather(latitude, longitude, nameOfCity) {
             longitude,
             current: "temperature_2m,weather_code,wind_speed_10m,relative_humidity_2m,apparent_temperature,wind_direction_10m,visibility,uv_index,pressure_msl",
             daily: "temperature_2m_min,temperature_2m_max,precipitation_sum,sunrise,sunset",
+            hourly: "temperature_2m,weather_code,precipitation_probability,,",
             timezone: "auto"
         });
         const url = `https://api.open-meteo.com/v1/forecast?${queryParams}`;
@@ -25,7 +26,10 @@ export async function getWeather(latitude, longitude, nameOfCity) {
 
         const weatherData = await weatherResponse.json();
         console.log(weatherData);
+        // console.log("current time :", weatherData.current.time);
 
+        // console.log("API current time:", weatherData.current.time);
+        // console.log("Browser time:", new Date().toString());
 
 
         return {
@@ -67,9 +71,9 @@ export async function getLocation(cityName) {
         const longitude = locationData.results[0].longitude;
         const nameOfCity = locationData.results[0];
 
-        console.log(latitude);
-        console.log(longitude);
-        console.log(nameOfCity);
+        // console.log(latitude);
+        // console.log(longitude);
+        // console.log(nameOfCity);
 
         // city.textContent = `${locationData.results[0].name}, ${locationData.results[0].country}`;
         // error.textContent = "";
@@ -78,6 +82,7 @@ export async function getLocation(cityName) {
     } catch (err) {
         console.log(err);
         // error.textContent = "Unable to find city.";
+        // alert("Error: ", err);
     }
 }
 
