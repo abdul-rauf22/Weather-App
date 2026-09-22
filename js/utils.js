@@ -234,3 +234,39 @@ export function displayHourlyForecast(hourly, currentTime) {
         elements.hourlyForecast.appendChild(card);
     }
 }
+
+export function getDayName(date, index) {
+    if (index === 0) {
+        return "Today";
+    }
+
+    return new Date(`${date}T12:00:00`).toLocaleDateString("en-US", {
+        weekday: "long"
+    });
+}
+
+export function displayDailyForecast(daily) {
+    elements.dailyItems.innerHTML = "";
+
+    for (let i = 0; i < daily.time.length; i++) {
+        const dayName = getDayName(daily.time[i], i);
+        const icon = getWeatherIcon(daily.weather_code[i]);
+
+        const maxTemp = Math.round(daily.temperature_2m_max[i]);
+        const minTemp = Math.round(daily.temperature_2m_min[i]);
+
+        const card = document.createElement("div");
+        card.className = "dailyItem";
+
+        card.innerHTML = `
+            <span class="dayName">${dayName}</span>
+            <span class="dailyIcon">${icon}</span>
+            <div class="dailyTemp">
+                <strong>${maxTemp}°</strong>
+                <span>${minTemp}°</span>
+            </div>
+        `;
+
+        elements.dailyItems.appendChild(card);
+    }
+}

@@ -44,6 +44,7 @@ export const elements = {
     pressure: document.getElementById("pressure"),
 
     hourlyForecast: document.getElementById("hourly-scroll-container"),
+    dailyItems: document.getElementById("dailyItems"),
 };
 
 // console.log(elements.searchForm);

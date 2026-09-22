@@ -8,7 +8,8 @@ import {
     getWindDirection,
     getSunriseSetset,
     getWeatherIcon,
-    displayHourlyForecast
+    displayHourlyForecast,
+    displayDailyForecast
 } from "./utils.js";
 
 export function displayElements(weatherData, nameOfCity) {
@@ -61,6 +62,8 @@ export function displayElements(weatherData, nameOfCity) {
     elements.sunset.textContent = getSunriseSetset(sunset);
 
     displayHourlyForecast(weatherData.hourly,weatherData.current.time);
+
+    displayDailyForecast(weatherData.daily);
 }
 
 export function displayElementsInConsoleTab(weatherData, nameOfCity) {

@@ -10,8 +10,9 @@ export async function getWeather(latitude, longitude, nameOfCity) {
             latitude,
             longitude,
             current: "temperature_2m,weather_code,wind_speed_10m,relative_humidity_2m,apparent_temperature,wind_direction_10m,visibility,uv_index,pressure_msl",
-            daily: "temperature_2m_min,temperature_2m_max,precipitation_sum,sunrise,sunset",
-            hourly: "temperature_2m,weather_code,precipitation_probability,,",
+            daily: "temperature_2m_min,temperature_2m_max,weather_code,precipitation_sum,sunrise,sunset",
+            hourly: "temperature_2m,weather_code,precipitation_probability",
+            forecast_days: 7,
             timezone: "auto"
         });
         const url = `https://api.open-meteo.com/v1/forecast?${queryParams}`;
@@ -25,7 +26,7 @@ export async function getWeather(latitude, longitude, nameOfCity) {
         }
 
         const weatherData = await weatherResponse.json();
-        console.log(weatherData);
+        console.log(weatherData.daily);
         // console.log("current time :", weatherData.current.time);
 
         // console.log("API current time:", weatherData.current.time);
