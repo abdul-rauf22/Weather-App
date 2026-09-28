@@ -3,7 +3,7 @@
 import { elements } from "./elements.js";
 import { searchCity } from "./searchCity.js";
 import { getWeather, getLocation } from "./api.js";
-import { displayElements, displayElementsInConsoleTab } from "./display.js";
+import { displayElements, displayElementsInConsoleTab, AQIdisplay } from "./display.js";
 // console.log(elements.searchForm);
 // console.log(elements.temperature);
 
@@ -53,7 +53,8 @@ elements.searchForm.addEventListener("submit", async function (event) {
     const data = await searchCity();
     displayElementsInConsoleTab(data.weatherData, data.nameOfCity);
     displayElements(data.weatherData, data.nameOfCity);
+    AQIdisplay(data.AQIdata);
     // displayHourlyForecast(data.weatherData.hourly);
     // console.log(data.weatherData.hourly);
-    
+
 });

@@ -27,19 +27,17 @@ export async function getWeather(latitude, longitude, nameOfCity) {
 
         const weatherData = await weatherResponse.json();
         console.log(weatherData.daily);
-        // console.log("current time :", weatherData.current.time);
-
-        // console.log("API current time:", weatherData.current.time);
-        // console.log("Browser time:", new Date().toString());
-
+        const AQIdata = await getAirQuality(latitude, longitude);
 
         return {
             weatherData,
-            nameOfCity
+            nameOfCity,
+            AQIdata
         };
 
     } catch (err) {
-        console.log(`${err}`);
+        // console.log(`${err}`);
+        alert(`error in weather getting : ${err}`);
         // error.textContent = `Unable to get weather data.`;
     }
 }
@@ -81,10 +79,44 @@ export async function getLocation(cityName) {
 
         return getWeather(latitude, longitude, nameOfCity);
     } catch (err) {
-        console.log(err);
+        // console.log(err);
         // error.textContent = "Unable to find city.";
-        // alert("Error: ", err);
+        alert(`error in location gettin : ${err}`);
     }
 }
 
 // getLocation("lahore");
+
+export async function getAirQuality(latitude, longitude) {
+    try {
+        const AQIParams = new URLSearchParams({
+            latitude,
+            longitude,
+            current: "us_aqi,pm2_5,pm10,carbon_monoxide,nitrogen_dioxide,ozone",
+            timezone: "auto"
+        });
+        const url = `https://air-quality-api.open-meteo.com/v1/air-quality?${AQIParams}`;
+
+        const resAQI = await fetch(url);
+
+        if (!resAQI.ok) {
+            throw new Error(`Request failed: ${resAQI.status}`);
+        }
+
+        const AQIdata = await resAQI.json();
+
+        console.log(AQIdata);
+        console.log("US AQI ", AQIdata.current.us_aqi);
+        console.log("Particulate matter 2.5", AQIdata.current.pm2_5);
+        console.log("Particulate matter 10", AQIdata.current.pm10);
+        console.log("CO", AQIdata.current.carbon_monoxide);
+        console.log("NO2", AQIdata.current.nitrogen_dioxide);
+        console.log("O3", AQIdata.current.ozone);
+
+        return AQIdata;
+    } catch (err) {
+        alert(`error in AQI getting : ${err}`);
+    }
+}
+
+// getAirQuality(73.3894, 30.3431)

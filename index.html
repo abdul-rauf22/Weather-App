@@ -172,44 +172,40 @@
 
             <!-- Air Quality -->
             <div class="airQuality">
-                <span class=" badge bg-light text-danger border border-danger" data-bs-toggle="tooltip"
-                    data-bs-placement="top" title="This feature is still under development.">
-                    Experimental!
-                </span>
 
                 <h4>Air Quality</h4>
 
                 <div class="aqiMain">
                     <span>US AQI</span>
-                    <strong>42</strong>
-                    <p>Good</p>
+                    <strong id="usAQI">--</strong>
+                    <p id="AQIstatus">--</p>
                 </div>
 
                 <div class="gasStatus">
 
                     <div class="gasItem">
                         <span>PM 2.5</span>
-                        <strong>12</strong>
+                        <strong id="pm25">--</strong>
                     </div>
 
                     <div class="gasItem">
                         <span>PM 10</span>
-                        <strong>20</strong>
+                        <strong id="pm10">--</strong>
                     </div>
 
                     <div class="gasItem">
                         <span>CO</span>
-                        <strong>0.3</strong>
+                        <strong id="co">--</strong>
                     </div>
 
                     <div class="gasItem">
                         <span>NO₂</span>
-                        <strong>12</strong>
+                        <strong id="no2">--</strong>
                     </div>
 
                     <div class="gasItem">
                         <span>O₃</span>
-                        <strong>48</strong>
+                        <strong id="o3">--</strong>
                     </div>
 
                 </div>

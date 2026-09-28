@@ -1,7 +1,7 @@
 
 
-import { elements } from "./elements.js";
-import { getWeather } from "./api.js";
+import { elements, AQIelements } from "./elements.js";
+import { getWeather, getAirQuality } from "./api.js";
 import {
     getWeatherDescription,
     formattedDateAndTime,
@@ -9,7 +9,8 @@ import {
     getSunriseSetset,
     getWeatherIcon,
     displayHourlyForecast,
-    displayDailyForecast
+    displayDailyForecast,
+    getAQIStatus
 } from "./utils.js";
 
 export function displayElements(weatherData, nameOfCity) {
@@ -61,7 +62,7 @@ export function displayElements(weatherData, nameOfCity) {
     const sunset = weatherData.daily.sunset[0];
     elements.sunset.textContent = getSunriseSetset(sunset);
 
-    displayHourlyForecast(weatherData.hourly,weatherData.current.time);
+    displayHourlyForecast(weatherData.hourly, weatherData.current.time);
 
     displayDailyForecast(weatherData.daily);
 }
@@ -91,7 +92,7 @@ export function displayElementsInConsoleTab(weatherData, nameOfCity) {
 
     // const wind_direction = getWindDirection(weatherData.current.wind_direction_10m);
     // console.log(`Wind direction : ${wind_direction}`);
-    
+
     // console.log(`Pressure: ${weatherData.current.pressure_msl}${weatherData.current_units.pressure_msl}`);
 
     // console.log(`Visibility: ${weatherData.current.visibility}${weatherData.current_units.visibility}`);
@@ -110,3 +111,18 @@ export function displayElementsInConsoleTab(weatherData, nameOfCity) {
 
 }
 
+export function AQIdisplay(AQIdata) {
+    AQIelements.usAQI.textContent = `${AQIdata.current.us_aqi}`;
+
+    AQIelements.AQIstatus.textContent = `${getAQIStatus(AQIdata.current.us_aqi)}`;
+
+    AQIelements.pm25.textContent = `${AQIdata.current.pm2_5}`;
+
+    AQIelements.pm10.textContent = `${AQIdata.current.pm10}`;
+
+    AQIelements.co.textContent = `${AQIdata.current.carbon_monoxide}`;
+
+    AQIelements.no2.textContent = `${AQIdata.current.nitrogen_dioxide}`;
+
+    AQIelements.o3.textContent = `${AQIdata.current.ozone}`;
+}

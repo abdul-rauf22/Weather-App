@@ -47,4 +47,13 @@ export const elements = {
     dailyItems: document.getElementById("dailyItems"),
 };
 
-// console.log(elements.searchForm);
+export const AQIelements = {
+    usAQI: document.getElementById("usAQI"),
+    AQIstatus: document.getElementById("AQIstatus"),
+    pm25: document.getElementById("pm25"),
+    pm10: document.getElementById("pm10"),
+    co: document.getElementById("co"),
+    no2: document.getElementById("no2"),
+    o3: document.getElementById("o3"),
+};
+console.log(AQIelements.pm10);
