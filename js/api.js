@@ -26,7 +26,7 @@ export async function getWeather(latitude, longitude, nameOfCity) {
         }
 
         const weatherData = await weatherResponse.json();
-        console.log(weatherData.daily);
+        // console.log(weatherData.daily);
         const AQIdata = await getAirQuality(latitude, longitude);
 
         return {
@@ -59,10 +59,10 @@ export async function getLocation(cityName) {
         }
 
         const locationData = await response.json();
-        console.log(locationData);
+        // console.log(locationData);
 
         if (!locationData.results || locationData.results.length === 0) {
-            console.log(`city not found!`);
+            alert(`city not found!`);
             // error.textContent = `City Not Found!`;
             return;
         }
@@ -105,13 +105,13 @@ export async function getAirQuality(latitude, longitude) {
 
         const AQIdata = await resAQI.json();
 
-        console.log(AQIdata);
-        console.log("US AQI ", AQIdata.current.us_aqi);
-        console.log("Particulate matter 2.5", AQIdata.current.pm2_5);
-        console.log("Particulate matter 10", AQIdata.current.pm10);
-        console.log("CO", AQIdata.current.carbon_monoxide);
-        console.log("NO2", AQIdata.current.nitrogen_dioxide);
-        console.log("O3", AQIdata.current.ozone);
+        // console.log(AQIdata);
+        // console.log("US AQI ", AQIdata.current.us_aqi);
+        // console.log("Particulate matter 2.5", AQIdata.current.pm2_5);
+        // console.log("Particulate matter 10", AQIdata.current.pm10);
+        // console.log("CO", AQIdata.current.carbon_monoxide);
+        // console.log("NO2", AQIdata.current.nitrogen_dioxide);
+        // console.log("O3", AQIdata.current.ozone);
 
         return AQIdata;
     } catch (err) {
@@ -120,3 +120,34 @@ export async function getAirQuality(latitude, longitude) {
 }
 
 // getAirQuality(73.3894, 30.3431)
+
+
+export async function getReverseLocation(latitude, longitude) {
+    try {
+        const locationParams = new URLSearchParams({
+            latitude: latitude,
+            longitude: longitude,
+            localityLanguage: "en",
+        });
+        const url =
+            `https://api.bigdatacloud.net/data/reverse-geocode-client?${locationParams}`;
+
+        const responseLocation = await fetch(url);
+        if (!responseLocation.ok) {
+
+            throw new Error(responseLocation.statusText);
+        }
+
+        const locationData = await responseLocation.json();
+
+        // console.log(locationData);
+        // console.log(locationData.city);
+        // console.log(locationData.locality);
+        // console.log(locationData.countryName);
+        return locationData;
+
+    } catch (error) {
+        alert(`error : ${error}`);
+    }
+
+}

@@ -25,13 +25,19 @@
                     </a>
 
                     <!-- Search Bar Form (Hamesha visible bina kisi toggle button ke) -->
-                    <form id="searchForm" class="d-flex flex-grow-1 max-width-search ms-auto">
+                    <form id="searchForm" class="d-flex flex-grow-1 max-width-search ">
                         <span class="search-bar border me-2 rounded-4 w-100">
                             <i class="iconSearch fa-solid fa-magnifying-glass"></i>
                             <input id="searchCity" class="searchInput border-0 form-control me-2" type="search"
                                 placeholder="Search City..." aria-label="Search">
                         </span>
                         <button class="btn btn-outline-primary rounded-4" id="btnSearch" type="submit">Search</button>
+
+                        <button class="btnLocationDetector ms-1 btn btn-outline-secondary rounded-4" type="button"
+                            id="btnCurrentLocation">
+                            <i class="bi bi-geo-alt"></i>
+                            <span class="locationText">Use My Location</span>
+                        </button>
                     </form>
 
                 </div>

@@ -1,49 +1,12 @@
 
 
-import { elements } from "./elements.js";
+import { elements, locationElements } from "./elements.js";
 import { searchCity } from "./searchCity.js";
 import { getWeather, getLocation } from "./api.js";
 import { displayElements, displayElementsInConsoleTab, AQIdisplay } from "./display.js";
+import { getLocationFunction } from "./lacation.js";
 // console.log(elements.searchForm);
 // console.log(elements.temperature);
-
-
-
-
-
-
-
-
-
-
-function formatTime(time) {
-    const Tparts = time.split("T");
-    const onlyTime = Tparts[1];
-    const hParts = onlyTime.split(":");
-    let hours = Number(hParts[0]);
-    const minuts = hParts[1];
-
-    let period;
-
-    if (hours >= 12) {
-        period = "PM";
-    } else {
-        period = "AM";
-    }
-
-    if (hours > 12) {
-        hours = hours - 12;
-    }
-
-    if (hours === 0) {
-        hours = 12;
-    }
-
-    return `${hours}:${minuts} ${period}`;
-}
-
-
-// console.log(elements.searchForm);
 
 elements.searchForm.addEventListener("submit", async function (event) {
     event.preventDefault();
@@ -54,7 +17,9 @@ elements.searchForm.addEventListener("submit", async function (event) {
     displayElementsInConsoleTab(data.weatherData, data.nameOfCity);
     displayElements(data.weatherData, data.nameOfCity);
     AQIdisplay(data.AQIdata);
-    // displayHourlyForecast(data.weatherData.hourly);
-    // console.log(data.weatherData.hourly);
 
+});
+
+locationElements.btnCurrentLocation.addEventListener("click", () => {
+    getLocationFunction();
 });
