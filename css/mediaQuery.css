@@ -15,4 +15,116 @@
         padding: 4px 12px;
         font-size: 14px;
     }
+
+    .currentWeather {
+        /* display: flex; */
+        flex-direction: column;
+        overflow: hidden;
+    }
+
+    .tempInfo {
+        padding: 32px 16px;
+        border-bottom-right-radius: 12px;
+        border-bottom-left-radius: 12px;
+        /* border: none; */
+    }
+
+    .cityInfo {
+        margin-top: 10px;
+        padding: 20px 16px;
+        border-top-right-radius: 12px;
+        border-top-left-radius: 12px;
+        border: none;
+
+    }
+
+    .weatherCards_1 .col {
+        padding: 12px 6px;
+    }
+
+    .weatherCards_1 .col i {
+        margin-right: 12px;
+    }
+
+    .weatherCards_1 {
+        gap: 5px;
+        padding: .5rem .7rem;
+    }
+
+    .weatherCards_1 .col i {
+        width: 34px;
+        height: 34px;
+        font-size: 16px;
+    }
+
+    .temp_wrap h2 {
+        font-size: 48px;
+    }
+
+    .weatherIcon {
+        width: 100px;
+        height: 100px;
+    }
+
+    .cloudIcon {
+        font-size: 75px;
+    }
+
+    .cityInfo h3 {
+        font-size: 24px;
+    }
+
+    .date {
+        margin-top: 2px;
+    }
+
+    .minMaxTemp {
+        gap: 10px;
+    }
+
+    .weatherCards {
+        gap: 0px;
+        margin-top: 0px;
+    }
+
+    .dailyForecastAndAirQuality {
+        flex-direction: column;
+    }
+
+    .day_7Forcast {
+        padding: 20px 16px;
+    }
+
+    .main-container {
+        padding-bottom: 7rem;
+    }
+
+    .dailyTemp {
+        gap: 8px;
+    }
+
+    .airQuality {
+        padding: 20px 16px;
+    }
+
+    .locationText {
+        display: none;
+    }
+
+    .btnLocationDetector {
+        padding: 6px 10px;
+    }
+
+    .txtSearch {
+        display: none;
+    }
+
+
+    .search-bar {
+        flex-wrap: nowrap;
+        min-width: 0;
+        gap: 5px;
+    }
+
+
 }

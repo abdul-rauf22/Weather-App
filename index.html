@@ -10,7 +10,7 @@
 </head>
 
 <body>
-    <div class="container-fluid pb-3">
+    <div class="main-container  container-fluid pb-3">
         <!-- search bar top bar -->
         <header class="mb-2">
             <nav class="navbar navbar-light bg-white shadow-sm">
@@ -29,13 +29,16 @@
                         <span class="search-bar border me-2 rounded-4 w-100">
                             <i class="iconSearch fa-solid fa-magnifying-glass"></i>
                             <input id="searchCity" class="searchInput border-0 form-control me-2" type="search"
-                                placeholder="Search City..." aria-label="Search">
+                                placeholder="Search..." aria-label="Search">
                         </span>
-                        <button class="btn btn-outline-primary rounded-4" id="btnSearch" type="submit">Search</button>
+                        <button class="btn btn-outline-primary rounded-4" id="btnSearch" type="submit">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                            <span class="txtSearch">Search</span>
+                        </button>
 
                         <button class="btnLocationDetector ms-1 btn btn-outline-secondary rounded-4" type="button"
                             id="btnCurrentLocation">
-                            <i class="bi bi-geo-alt"></i>
+                            <i class="fa-solid fa-location-dot"></i>
                             <span class="locationText">Use My Location</span>
                         </button>
                     </form>
