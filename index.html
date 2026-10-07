@@ -46,6 +46,30 @@
                 </div>
             </nav>
         </header>
+        <!-- loading popup -->
+        <div id="loadingPopup" class="loadingPopup d-none">
+            <div class="loadingBox">
+                <div class="spinner-border text-primary" role="status">
+                    <span class="visually-hidden">Loading...</span>
+                </div>
+
+                <p>Loading weather...</p>
+            </div>
+        </div>
+        <!-- error popup -->
+        <div id="errorPopup" class="errorPopup d-none">
+            <div class="errorBox">
+
+                <button id="closeError" class="closeError" type="button">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+
+                <i class="fa-solid fa-circle-exclamation errorIcon"></i>
+
+                <p id="errorMessage">Something went wrong!</p>
+
+            </div>
+        </div>
         <!-- current weather -->
         <div class="currentWeather d-flex">
             <div class="tempInfo container-fluid border d-flex flex-column">

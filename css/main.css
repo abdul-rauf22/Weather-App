@@ -1,6 +1,7 @@
 @import url(./navbar.css);
 @import url(./currentWeather.css);
 @import url(./forecast.css);
+@import url(./popupMSG.css);
 
 @import url(./mediaQuery.css);
 
@@ -19,4 +20,3 @@
     font-size: 16px !important;
     color: black !important;
 }
-

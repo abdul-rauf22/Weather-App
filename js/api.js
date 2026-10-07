@@ -1,6 +1,6 @@
 
 
-
+// import { showError } from "./utils.js";
 // import { searchCity } from "./searchCity.js";
 
 
@@ -36,16 +36,12 @@ export async function getWeather(latitude, longitude, nameOfCity) {
         };
 
     } catch (err) {
-        // console.log(`${err}`);
-        alert(`error in weather getting : ${err}`);
-        // error.textContent = `Unable to get weather data.`;
+        throw err;
     }
 }
 
-// getWeather(31.558, 74.35071);
 
 export async function getLocation(cityName) {
-    // error.textContent = `Loding...`;
 
     try {
         const url = `https://geocoding-api.open-meteo.com/v1/search?name=${cityName}`;
@@ -62,10 +58,9 @@ export async function getLocation(cityName) {
         // console.log(locationData);
 
         if (!locationData.results || locationData.results.length === 0) {
-            alert(`city not found!`);
-            // error.textContent = `City Not Found!`;
-            return;
+            throw new Error("City not found. Please check the city name.");
         }
+
         const latitude = locationData.results[0].latitude;
         const longitude = locationData.results[0].longitude;
         const nameOfCity = locationData.results[0];
@@ -74,18 +69,12 @@ export async function getLocation(cityName) {
         // console.log(longitude);
         // console.log(nameOfCity);
 
-        // city.textContent = `${locationData.results[0].name}, ${locationData.results[0].country}`;
-        // error.textContent = "";
-
         return getWeather(latitude, longitude, nameOfCity);
     } catch (err) {
-        // console.log(err);
-        // error.textContent = "Unable to find city.";
-        alert(`error in location gettin : ${err}`);
+        throw err;
     }
 }
 
-// getLocation("lahore");
 
 export async function getAirQuality(latitude, longitude) {
     try {
@@ -106,20 +95,13 @@ export async function getAirQuality(latitude, longitude) {
         const AQIdata = await resAQI.json();
 
         // console.log(AQIdata);
-        // console.log("US AQI ", AQIdata.current.us_aqi);
-        // console.log("Particulate matter 2.5", AQIdata.current.pm2_5);
-        // console.log("Particulate matter 10", AQIdata.current.pm10);
-        // console.log("CO", AQIdata.current.carbon_monoxide);
-        // console.log("NO2", AQIdata.current.nitrogen_dioxide);
-        // console.log("O3", AQIdata.current.ozone);
 
         return AQIdata;
     } catch (err) {
-        alert(`error in AQI getting : ${err}`);
+        throw err;
     }
 }
 
-// getAirQuality(73.3894, 30.3431)
 
 
 export async function getReverseLocation(latitude, longitude) {
@@ -135,19 +117,17 @@ export async function getReverseLocation(latitude, longitude) {
         const responseLocation = await fetch(url);
         if (!responseLocation.ok) {
 
-            throw new Error(responseLocation.statusText);
+            throw new Error(responseLocation.status);
         }
 
         const locationData = await responseLocation.json();
 
         // console.log(locationData);
-        // console.log(locationData.city);
-        // console.log(locationData.locality);
-        // console.log(locationData.countryName);
+
         return locationData;
 
     } catch (error) {
-        alert(`error : ${error}`);
+        throw error;
     }
 
 }

@@ -281,3 +281,26 @@ export function getAQIStatus(aqi) {
 
     return "Unknown";
 }
+
+export function showLoading() {
+    document.getElementById('loadingPopup').classList.remove('d-none');
+}
+
+export function hideLoading() {
+    document.getElementById('loadingPopup').classList.add('d-none');
+}
+export function isValidCityName(cityName) {
+    return /^[a-zA-Z\s]+$/.test(cityName);
+}
+
+export function showError(message) {
+    const errorPopup = document.getElementById("errorPopup");
+    const errorMessage = document.getElementById("errorMessage");
+
+    errorMessage.textContent = message;
+    errorPopup.classList.remove("d-none");
+}
+
+export function hideError() {
+    document.getElementById("errorPopup").classList.add("d-none");
+}
