@@ -56,7 +56,6 @@ export const AQIelements = {
     no2: document.getElementById("no2"),
     o3: document.getElementById("o3"),
 };
-// console.log(AQIelements.pm10);
 
 export const locationElements = {
     btnCurrentLocation: document.getElementById("btnCurrentLocation"),

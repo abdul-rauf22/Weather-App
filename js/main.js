@@ -2,7 +2,7 @@ import { elements, locationElements } from "./elements.js";
 import { searchCity, validateCityName } from "./searchCity.js";
 import { getWeather, getLocation } from "./api.js";
 import { displayElements, displayElementsInConsoleTab, AQIdisplay } from "./display.js";
-import { getLocationFunction } from "./lacation.js";
+import { getLocationFunction } from "./location.js";
 import { hideError } from "./utils.js";
 
 document.getElementById("closeError").addEventListener("click", hideError);

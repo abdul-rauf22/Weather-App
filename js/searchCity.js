@@ -25,7 +25,7 @@ export async function searchCity() {
 
     } catch (err) {
         hideLoading();
-        showError("Unable to get weather data. Please try again.");
+        showError(err.message);
     }
 }
 

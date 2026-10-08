@@ -1,9 +1,5 @@
 
 
-// import { showError } from "./utils.js";
-// import { searchCity } from "./searchCity.js";
-
-
 export async function getWeather(latitude, longitude, nameOfCity) {
     try {
         const queryParams = new URLSearchParams({
@@ -64,10 +60,6 @@ export async function getLocation(cityName) {
         const latitude = locationData.results[0].latitude;
         const longitude = locationData.results[0].longitude;
         const nameOfCity = locationData.results[0];
-
-        // console.log(latitude);
-        // console.log(longitude);
-        // console.log(nameOfCity);
 
         return getWeather(latitude, longitude, nameOfCity);
     } catch (err) {
